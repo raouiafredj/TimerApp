@@ -10,7 +10,7 @@ class Timer extends Component {
         }
         this.start = this.start.bind(this)
         this.resetTimer.bind(this)
-        // this.pause = this.pause.bind(this)
+        this.pause = this.pause.bind(this)
     }
     start () {
         if(this.state.interval) {
@@ -28,15 +28,15 @@ class Timer extends Component {
             interval: interval
         })
     }
-    // pause () {
-    //     if(!this.state.interval) {
-    //         return
-    //     }
-    //     clearInterval(this.state.interval)
-    //     this.setState({
-    //         interval: undefined
-    //     })
-    // }
+    pause () {
+        if(!this.state.interval) {
+            return
+        }
+        clearInterval(this.state.interval)
+        this.setState({
+            interval: undefined
+        })
+    }
     resetTimer = () => {
         this.setState({
             timeMs: 0,
@@ -59,12 +59,14 @@ class Timer extends Component {
                 type="button"
                 value="Reset"
                 onClick={this.resetTimer}/>
+
+<input
+              type="button"
+              value="Stop"
+               onClick={this.pause}/>
                 </div> 
 
-{/* <input
-                type="button"
-                value="Stop"
-                onClick={this.pause}/> */}
+  
         </div>
     }
 }
